@@ -22,7 +22,11 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/assets/css/admin.css",
+              "src/assets/css/student.css",
+              "src/assets/css/main.css",
+              "src/assets/css/auth.css"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
