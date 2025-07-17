@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { LessonCard } from './../../../../shared/components/lesson-card/lesson-card';
 
 @Component({
   selector: 'app-subjects',
-  imports: [],
+  standalone: true, 
+  imports: [LessonCard],
   templateUrl: './subjects.html',
   styleUrl: './subjects.css'
 })
