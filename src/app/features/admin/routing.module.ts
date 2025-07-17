@@ -1,15 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { Content } from './pages/content/content';
 import { Users } from './pages/users/users';
+import { Admin } from './admin';
+import { Content } from './pages/content/content';
 
 const routes: Routes = [
-  { path: 'admin', component: Content },
-  { path: 'admin/users', component: Users },
+  { 
+    path: 'admin', 
+    component: Admin,
+    children: [
+      { path: 'users', component: Users },
+      { path: 'matier', component: Content },
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class RoutingModule {}
+export class RoutingModule {} 

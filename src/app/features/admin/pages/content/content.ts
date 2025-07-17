@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
+
 
 @Component({
   selector: 'app-content',
-  standalone: false,
+  standalone: true, 
+  imports: [],
   templateUrl: './content.html',
-  styleUrl: './content.css'
+  styleUrl: './content.css',
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class Content {
 

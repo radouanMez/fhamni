@@ -1,0 +1,149 @@
+#sidbar {
+    box-sizing: border-box;
+    height: 100vh;
+    width: 220px;
+    padding: 4.5em 0.6em;
+    background-color: var(--p-background);
+    position: sticky;
+    top: 0;
+    align-self: start;
+    transition: 300ms ease-in-out;
+    overflow: hidden;
+    text-wrap: nowrap; 
+    border-right: 0.0625rem solid rgba(225, 227, 229, 1);
+}
+
+#sidbar.close a span {
+    padding-left: 5px;
+}
+
+#sidbar a {
+    font-size: 0.85em;
+    border-radius: 0em;
+    padding: .49em .65em .49em .95em;
+    text-decoration: none;
+    margin: .25em 0px;
+    color: var(--text-clr);
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-weight: 600;
+}
+
+#sidbar svg {
+    flex-shrink: 0;
+    fill: var(--text-clr);
+}
+
+#sidbar a span {
+    flex-grow: 1;
+}
+
+#sidbar a:hover {
+    background-color: var(--hover-clr);
+}
+
+#sidbar .sub-menu {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: 300ms ease-in-out;
+
+    >div {
+        overflow: hidden;
+    }
+}
+
+#sidbar ul {
+    list-style: none;
+}
+
+#sidbar .sub-menu.show {
+    grid-template-rows: 1fr;
+}
+
+#sidbar .sub-menu a {
+    padding-left: 2em;
+}
+
+#sidbar ul li.active a {
+    color: var(--accent-clr);
+
+    svg {
+        fill: var(--accent-clr);
+    }
+}
+
+@media(max-width: 800px) {
+
+    #sidbar {
+        height: 60px;
+        width: 100%;
+        border-right: none;
+        border-top: 1px solid var(--line-clr);
+        padding: 0;
+        position: fixed;
+        top: unset;
+        bottom: 0;
+        justify-content: center;
+        text-align: center;
+        display: flex;
+
+        >ul {
+            padding: 0;
+            display: grid;
+            grid-auto-columns: 60px;
+            grid-auto-flow: column;
+            align-items: center;
+        }
+
+        ul li {
+            height: 100%;
+        }
+
+        ul a,
+        ul .dropdown-btn {
+            width: 60px;
+            height: 60px;
+            padding: 0;
+            border-radius: 0;
+            justify-content: center;
+        }
+
+        ul li span,
+        ul li:first-child,
+        .dropdown-btn svg:last-child {
+            display: none;
+        }
+
+        ul li .sub-menu.show {
+            position: fixed;
+            bottom: 60px;
+            left: 0px;
+            box-sizing: border-box;
+            height: 60px;
+            width: 100%;
+            background-color: var(--hover-clr);
+            border-top: 1px solid var(--line-clr);
+            display: flex;
+            justify-content: center;
+
+            >div {
+                overflow-x: auto;
+            }
+
+            li {
+                display: inline-flex;
+            }
+
+            a {
+                box-sizing: border-box;
+                padding: 1em;
+                width: auto;
+                justify-content: center;
+            }
+
+        }
+
+    }
+
+}

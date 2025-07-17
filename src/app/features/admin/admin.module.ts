@@ -4,10 +4,11 @@ import { RoutingModule } from './routing.module';
 import { Content } from './pages/content/content';
 
 @NgModule({
-  declarations: [Content],
+  declarations: [],
   imports: [
     CommonModule,
-    RoutingModule
+    RoutingModule,
+    Content
   ] 
 })
 export class ContentModule {}

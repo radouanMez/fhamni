@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidbar',
-  imports: [],
+  standalone: true,
   templateUrl: './sidbar.html',
-  styleUrl: './sidbar.css'
+  styleUrl: './sidbar.css', 
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class Sidbar {
 
