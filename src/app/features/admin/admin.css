@@ -1,7 +1,7 @@
 .layout__admin {
     position: relative;
-    background: #fff;
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr; 
 }
 
 main header {
@@ -26,7 +26,6 @@ main header.close {
 .content {
     padding: min(30px, 7%);
     margin-top: 3em;
-    height: 1000px;
 }
 
 main p {
@@ -35,15 +34,38 @@ main p {
     margin-bottom: 15px;
 }
 
-.container {
-    border: 1px solid var(--line-clr);
-    border-radius: 1em;
-    margin-bottom: 20px;
-    padding: min(3em, 15%);
-}
-
 @media(max-width: 800px) {
     main header {
         left: 0px;
     }
+}
+
+.profile {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.profile .user-avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 15px;
+    border-radius: 13px;
+    position: relative;
+}
+
+.profile .user-avatar a span {
+    display: block;
+    border-radius: 13px;
+    object-fit: cover;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+    height: 100%;
+    width: 100%;
+    font-weight: 450;
+    background-color: #553AD8;
+    line-height: 30px;
+    font-size: 12px;
 }

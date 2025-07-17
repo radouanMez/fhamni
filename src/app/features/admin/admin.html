@@ -4,15 +4,26 @@
         <header id="navbar">
             <div class="search">
                 <span class="logo">
-                    coding2go
+                    Fhamni
                 </span>
             </div>
             <div class="profile">
-                profile
+                <div class="user-avatar">
+                    <a  [routerLink]="['profile']"> 
+                        <span>
+                            RM
+                        </span>
+                    </a>
+                </div>
             </div>
         </header>
 
-        <router-outlet /> 
+        <div class="content">
+            <div class="container">
+                <router-outlet /> 
+            </div>
+        </div>
 
+        
     </main>
 </div>
