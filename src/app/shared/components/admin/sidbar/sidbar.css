@@ -18,7 +18,7 @@
 }
 
 #sidbar a {
-    font-size: 0.85em;
+    font-size: 0.89em;
     border-radius: 0em;
     padding: .49em .65em .49em .95em;
     text-decoration: none;
@@ -27,7 +27,7 @@
     display: flex;
     align-items: center;
     gap: 1em;
-    font-weight: 600;
+    font-weight: 500;
     cursor: pointer;
 }
 
@@ -37,7 +37,8 @@
 }
 
 #sidbar a span {
-    flex-grow: 1;
+    padding: 0.22em 0em 0em;
+    flex-grow: 1; 
 }
 
 #sidbar a:hover {
@@ -85,7 +86,7 @@
         height: 60px;
         width: 100%;
         border-right: none;
-        border-top: 1px solid var(--line-clr);
+        border-top: 0.0625rem solid rgba(225, 227, 229, 1);
         padding: 0;
         position: fixed;
         top: unset;
@@ -93,7 +94,7 @@
         justify-content: center;
         text-align: center;
         display: flex;
-
+        z-index: 22;
         >ul {
             padding: 0;
             display: grid;

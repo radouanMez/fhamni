@@ -19,12 +19,15 @@
                "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
+              "src/assets/css/bootstrap.min.css",
               "src/styles.css",
               "src/assets/css/admin.css",
               "src/assets/css/student.css",
               "src/assets/css/main.css",
               "src/assets/css/auth.css"
+            ],
+            "scripts": [
+              "src/assets/js/bootstrap.bundle.min.js"
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",

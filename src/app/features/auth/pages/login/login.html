@@ -1,1 +1,117 @@
-<p>login works!</p>
+<div class="auth-page-wrapper pt-5">
+    <div class="auth-page-content">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card mt-4">
+
+                        <div class="card-body p-4">
+
+                            <div class="text-center mt-2">
+                                <h5 class="text-primary">Welcome Back !</h5>
+                                <p class="text-muted">Sign in to continue to Velzon.</p>
+                            </div>
+
+                            <div class="p-2 mt-4">
+
+                                <form 
+                                    #authForm="ngForm"
+                                    (ngSubmit)="onSubmit(authForm)"
+                                >
+
+                                    <div class="mb-3">
+                                        <label for="fullname" class="form-label">
+                                            Full Name
+                                        </label>
+                                        <input
+                                            type="text" 
+                                            class="form-control" 
+                                            id="fullname"
+                                            ngModel
+                                            name="fullname"
+                                            required
+                                            placeholder="Enter Full Name">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">
+                                            Email
+                                        </label>
+                                        <input
+                                            type="text" 
+                                            class="form-control" 
+                                            id="email"
+                                            ngModel
+                                            name="email"
+                                            required
+                                            email
+                                            placeholder="Enter email">
+                                    </div>
+
+                                    <div class="mb-3">
+                                   
+                                        <label class="form-label" for="password-input">Password</label>
+                                        <div 
+                                            class="position-relative auth-pass-inputgroup mb-3">
+                                            <input 
+                                                type="password" 
+                                                class="form-control pe-5 password-input"
+                                                placeholder="Enter password" 
+                                                id="password-input"
+                                                ngModel
+                                                name="password"
+                                                required
+                                                minlength="8"
+                                            >
+                                        </div>
+                                        <div class="float-end">
+                                            <a href="auth-pass-reset-basic.html" class="text-muted">Forgot password?</a>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value=""
+                                            id="auth-remember-check">
+                                        <label class="form-check-label" for="auth-remember-check">Remember me</label>
+                                    </div>
+
+                                    <div class="mt-4">
+                                        <button 
+                                            class="btn btn-success w-100" 
+                                            type="submit"
+                                            [disabled]="!authForm.valid"
+                                        >
+                                            {{ isLoginMode ? 'Sign In' : 'Sign Up' }}
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-2">
+                                        <button class="btn btn-success w-100" (click)="onSwitchMode()" type="button">
+                                            Switch to {{ isLoginMode ? 'Sign Up' : 'Sign In' }} 
+                                        </button>
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    <!-- <div class="mt-4 text-center">
+                        <p class="mb-0">Don't have an account ? 
+                            <a  href="auth-signup-basic.html"
+                                class="fw-semibold text-primary text-decoration-underline"> 
+                                Signup 
+                            </a> 
+                        </p>
+                    </div> -->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
