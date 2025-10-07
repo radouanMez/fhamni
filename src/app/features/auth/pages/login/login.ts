@@ -1,45 +1,60 @@
 import { Component } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../auth.service';
 
 @Component({
   selector: 'app-login',
-  standalone: false,
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrls: ['./login.css'] 
 })
 export class Login {
-  isLoginMode = true;
+  loginForm: FormGroup;
+  loading = false;
+  error = '';
 
-  constructor(private authService: AuthService) {}
-
-  onSwitchMode() {
-    this.isLoginMode = !this.isLoginMode;
-  }
-
-onSubmit(form: NgForm) {
-
-  if( !form.valid ) {
-    return;
-  }
-
-  const email = form.value.email;
-  const password = form.value.password;
-  const fullname = form.value.fullname;
-  const username = email.split('@')[0];
-
-  if( this.isLoginMode ) {
-    // ...
-  } else {
-    
-    this.authService.signup(email, password, fullname, username).subscribe(resData => {
-      console.log(resData)
-    }, error => {
-      console.log(error)
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
+    this.loginForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
-  // form.reset()
-}
+  get f() {
+    return this.loginForm.controls;
+  }
+
+  onSubmit(): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    this.loading = true;
+    this.error = '';
+
+    const { email, password } = this.loginForm.value;
+
+    this.authService.login(email, password).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.router.navigate(['/dashboard']);
+      },
+      error: (error) => {
+        this.error = error.error?.message || 'Login failed. Please try again.';
+        this.loading = false;
+      },
+      complete: () => {
+        this.loading = false;
+      }
+    });
+  }
+
 
 }
