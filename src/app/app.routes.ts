@@ -3,20 +3,25 @@ import { NotFound } from './features/not-found/not-found';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: 'main',
     loadChildren: () => import('./features/main/routing.module').then(m => m.RoutingModule)
   },
   {
-    path: '',
+    path: 'student',
     loadChildren: () => import('./features/student/routing.module').then(m => m.RoutingModule)
   },
   {
-    path: '',
+    path: 'admin',
     loadChildren: () => import('./features/admin/routing.module').then(m => m.RoutingModule)
   },
   {
-    path: '',
+    path: 'auth',
     loadChildren: () => import('./features/auth/routing.module').then(m => m.RoutingModule)
+  },
+  {
+    path: '',
+    redirectTo: '/main', // 🔥 توجيه افتراضي
+    pathMatch: 'full'
   },
   {
     path: '**',

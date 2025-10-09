@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -9,7 +9,7 @@ import { AuthService } from '../../auth.service';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.html',
-  styleUrls: ['./login.css'] 
+  styleUrls: ['./login.css']
 })
 export class Login {
   loginForm: FormGroup;
@@ -19,7 +19,9 @@ export class Login {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone,
+    private cd: ChangeDetectorRef
   ) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -32,9 +34,7 @@ export class Login {
   }
 
   onSubmit(): void {
-    if (this.loginForm.invalid) {
-      return;
-    }
+    if (this.loginForm.invalid) return;
 
     this.loading = true;
     this.error = '';
@@ -43,18 +43,18 @@ export class Login {
 
     this.authService.login(email, password).subscribe({
       next: (res) => {
-        console.log(res)
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/admin']);
       },
       error: (error) => {
-        this.error = error.error?.message || 'Login failed. Please try again.';
-        this.loading = false;
+        this.ngZone.run(() => {
+          this.error = error.error?.message || 'Login failed. Please try again.';
+          this.loading = false;
+          this.cd.detectChanges();
+        });
       },
       complete: () => {
         this.loading = false;
       }
     });
   }
-
-
 }

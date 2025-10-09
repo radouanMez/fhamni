@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, NgZone, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
@@ -19,7 +19,9 @@ export class RegisterComponent {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone,
+    private cd: ChangeDetectorRef
   ) {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.required]],
@@ -59,11 +61,14 @@ export class RegisterComponent {
 
     this.authService.register(email, password, fullname, username, phone).subscribe({
       next: () => {
-        this.router.navigate(['/admin/dashboard']);
+        this.router.navigate(['/admin']);
       },
       error: (error) => {
-        this.error = error.error?.message || 'Registration failed. Please try again.';
-        this.loading = false;
+        this.ngZone.run(() => {
+          this.error = error.error?.message || 'Registration failed. Please try again.';
+          this.loading = false;
+          this.cd.detectChanges();
+        });
       },
       complete: () => {
         this.loading = false;

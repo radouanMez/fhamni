@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
-import { AuthService, User } from '../../../../features/auth/auth.service';
+import { AuthService } from '../../../../features/auth/auth.service';
+import { User } from '../../../../features/auth/user.model';
 
 @Component({
   selector: 'app-sidbar',
@@ -27,7 +28,7 @@ export class Sidbar implements OnInit {
 
   logout(): void {
     this.authService.logout(); 
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
   }
 
 

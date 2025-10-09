@@ -1,0 +1,53 @@
+ .loading-overlay {
+     position: fixed;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: #f8f9fa;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     z-index: 9999;
+     font-family: Arial, sans-serif;
+ }
+
+ .loading-spinner {
+     text-align: center;
+     color: #333;
+ }
+
+ .spinner {
+     border: 4px solid #f3f3f3;
+     border-top: 4px solid #007bff;
+     border-radius: 50%;
+     width: 40px;
+     height: 40px;
+     animation: spin 1s linear infinite;
+     margin: 0 auto 16px;
+ }
+
+ @keyframes spin {
+     0% {
+         transform: rotate(0deg);
+     }
+
+     100% {
+         transform: rotate(360deg);
+     }
+ }
+
+ .app-content {
+     opacity: 0;
+     animation: fadeIn 0.3s ease-in forwards;
+ }
+
+ @keyframes fadeIn {
+     from {
+         opacity: 0;
+     }
+
+     to {
+         opacity: 1;
+     }
+ }
